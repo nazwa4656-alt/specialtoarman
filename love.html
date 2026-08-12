@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speciall Dayy To Armann</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: "DM Sans", sans-serif;
+            color: #4f4034;
+            background:
+                radial-gradient(circle at top left, #faf3e9 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #d7c0a6 0%, transparent 35%),
+                #eee4d8;
+        }
+
+        button, input, textarea { font-family: inherit; }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 35px 20px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: fadeIn .6s ease;
+        }
+
+        .page.active { display: flex; }
+
+        .content { width: min(650px, 100%); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .eyebrow {
+            margin-bottom: 10px;
+            color: #927c67;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .title {
+            margin: 0;
+            font-family: "Playfair Display", serif;
+            color: #4b3b2e;
+            font-size: clamp(36px, 8vw, 58px);
+            line-height: 1.08;
+        }
+
+        .subtitle {
+            max-width: 500px;
+            margin: 14px auto 0;
+            color: #806d5b;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            border: 0;
+            padding: 12px 24px;
+            border-radius: 999px;
+            background: #5d4b3d;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 23px rgba(70, 50, 35, .15);
+            transition: .2s ease;
+        }
+
+        .btn:hover {
+            background: #44352a;
+            transform: translateY(-3px);
+        }
+
+        .btn:active { transform: scale(.96); }
+
+        /* ENVELOPE */
+        .envelope-wrap {
+            position: relative;
+            width: 330px;
+            height: 250px;
+            margin: 28px auto 8px;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .envelope {
+            position: absolute;
+            width: 280px;
+            height: 180px;
+            left: 25px;
+            bottom: 10px;
+            background: #c9ae91;
+            border-radius: 8px;
+            box-shadow: 0 20px 35px rgba(70, 50, 35, .16);
+        }
+
+        .env-front {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            background: #c9ae91;
+            clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .env-flap {
+            position: absolute;
+            inset: 0;
+            z-index: 6;
+            background: #b99b7c;
+            clip-path: polygon(0 0, 100% 0, 50% 55%);
+            transform-origin: top;
+            transition: .8s ease;
+        }
+
+        .env-heart {
+            position: absolute;
+            top: 76px;
+            left: 50%;
+            z-index: 10;
+            transform: translateX(-50%);
+            font-size: 34px;
+            transition: .4s ease;
+        }
+
+        .letter {
+            position: absolute;
+            width: 235px;
+            height: 180px;
+            left: 47px;
+            bottom: 25px;
+            z-index: 2;
+            padding: 20px;
+            background: #fffaf3;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(70, 50, 35, .13);
+            transition: 1s ease;
+        }
+
+        .letter h3 {
+            margin: 0 0 8px;
+            font-family: "Playfair Display", serif;
+            font-size: 22px;
+            color: #56463a;
+        }
+
+        .letter p {
+            margin: 0;
+            color: #7c6957;
+            font-size: 12px;
+            line-height: 1.65;
+        }
+
+        .envelope-wrap.open .env-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope-wrap.open .letter {
+            transform: translateY(-120px);
+            z-index: 8;
+        }
+
+        .envelope-wrap.open .env-heart {
+            opacity: 0;
+            transform: translateX(-50%) scale(.5);
+        }
+
+        .hint {
+            color: #917a64;
+            font-size: 12px;
+            animation: blink 1.4s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: .45; }
+            50% { opacity: 1; }
+        }
+
+        /* KALENDER PASSWORD */
+        .calendar-box {
+            max-width: 340px;
+            margin: 28px auto 18px;
+            padding: 22px 18px 20px;
+            border: 1px solid #d8c6b4;
+            border-radius: 24px;
+            background: rgba(255, 250, 244, 0.95);
+            box-shadow: 0 18px 40px rgba(72, 55, 42, 0.1);
+        }
+
+        .cal-header {
+            font-family: "Playfair Display", serif;
+            font-size: 20px;
+            color: #5c4a3c;
+            margin-bottom: 6px;
+        }
+
+        .cal-sub {
+            font-size: 12px;
+            color: #8c7866;
+            margin-bottom: 16px;
+        }
+
+        .cal-month {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6f5846;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .cal-day-name {
+            font-size: 10px;
+            color: #a08b78;
+            font-weight: 600;
+            padding-bottom: 4px;
+        }
+
+        .cal-day {
+            aspect-ratio: 1;
+            border: 0;
+            border-radius: 10px;
+            background: #f5ebe0;
+            color: #5c4a3c;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .cal-day:hover {
+            background: #e8d5c0;
+            transform: scale(1.08);
+        }
+
+        .cal-day.selected {
+            background: #6f5846;
+            color: #fff;
+        }
+
+        .cal-day.correct {
+            background: #6f5846;
+            color: #fff;
+            animation: correctPop .5s ease;
+        }
+
+        @keyframes correctPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+            100% { transform: scale(1); }
+        }
+
+        .cal-day.empty {
+            background: transparent;
+            cursor: default;
+        }
+
+        .salah-love {
+            display: none;
+            margin-top: 12px;
+            padding: 14px;
+            border-radius: 14px;
+            background: #f8e8e0;
+            color: #8a4f3d;
+            font-size: 14px;
+            font-weight: 600;
+            animation: pop .4s ease;
+        }
+
+        .benar-love {
+            display: none;
+            margin-top: 12px;
+            padding: 14px;
+            border-radius: 14px;
+            background: #e8f0e4;
+            color: #4a6b3d;
+            font-size: 14px;
+            font-weight: 600;
+            animation: pop .4s ease;
+        }
+
+        @keyframes pop {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* LOVE GAME */
+        .love-game {
+            display: none;
+            width: min(520px, 100%);
+            margin: 10px auto 0;
+            padding: 24px 18px 28px;
+            border: 1px solid #d8c6b4;
+            border-radius: 30px;
+            background: rgba(255, 250, 244, 0.94);
+            box-shadow: 0 24px 55px rgba(72, 55, 42, 0.10);
+        }
+
+        .love-progress {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .love-count {
+            min-width: 55px;
+            color: #806d5b;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .love-progress-track {
+            flex: 1;
+            height: 7px;
+            overflow: hidden;
+            border-radius: 999px;
+            background: #e7dbce;
+        }
+
+        .love-progress-fill {
+            width: 0%;
+            height: 100%;
+            border-radius: inherit;
+            background: #6f5846;
+            transition: width 0.35s ease;
+        }
+
+        .love-instruction {
+            min-height: 40px;
+            margin: 14px auto 5px;
+            color: #654f40;
+            font-family: "Playfair Display", serif;
+            font-size: 20px;
+            line-height: 1.45;
+        }
+
+        .love-subtitle {
+            min-height: 30px;
+            color: #8c7866;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .love-field {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            margin-top: 8px;
+        }
+
+        .love-btn {
+            position: absolute;
+            width: 64px;
+            height: 58px;
+            border: 0;
+            padding: 0;
+            background: transparent;
+            font-size: 45px;
+            line-height: 1;
+            cursor: pointer;
+            filter: drop-shadow(0 8px 10px rgba(82, 58, 42, 0.10));
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .love-btn:hover {
+            transform: scale(1.15) rotate(-6deg);
+        }
+
+        .love-btn:active { transform: scale(0.9); }
+
+        .love-btn.done {
+            pointer-events: none;
+            opacity: 0.35;
+            transform: scale(0.78);
+        }
+
+        .love-finish {
+            display: none;
+            padding-top: 10px;
+            animation: finalLovePop 0.7s ease;
+        }
+
+        .love-finish-icon { margin-bottom: 8px; font-size: 62px; }
+
+        .love-finish-title {
+            margin: 0;
+            font-family: "Playfair Display", serif;
+            color: #584636;
+            font-size: 40px;
+        }
+
+        .love-finish-text {
+            max-width: 360px;
+            margin: 10px auto 20px;
+            color: #796655;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        @keyframes finalLovePop {
+            0% { opacity: 0; transform: scale(0.55) rotate(-4deg); }
+            65% { opacity: 1; transform: scale(1.08) rotate(1deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0); }
+        }
+
+        .love-burst {
+            position: fixed;
+            z-index: 99999;
+            pointer-events: none;
+            animation: loveBurst 0.95s ease forwards;
+        }
+
+        @keyframes loveBurst {
+            from { opacity: 1; transform: translate(0, 0) scale(0.5); }
+            to { opacity: 0; transform: translate(var(--x), var(--y)) scale(1.3); }
+        }
+
+        /* MENU */
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            max-width: 540px;
+            margin: 28px auto;
+        }
+
+        .menu-card {
+            min-height: 150px;
+            padding: 18px 12px;
+            border: 1px solid #d9c7b4;
+            border-radius: 22px;
+            background: rgba(255, 250, 244, .92);
+            cursor: pointer;
+            box-shadow: 0 9px 22px rgba(72, 55, 42, .07);
+            transition: .25s ease;
+        }
+
+        .menu-card:hover { transform: translateY(-6px); }
+
+        .menu-icon { font-size: 36px; margin-bottom: 9px; }
+        .menu-title { color: #5e4c3e; font-size: 12px; font-weight: 700; }
+        .menu-sub { margin-top: 5px; color: #897462; font-size: 10px; }
+
+        .music-box, .cake-box, .like-form {
+            display: none;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 22px;
+            border: 1px solid #dccbb9;
+            border-radius: 22px;
+            background: #fffaf3;
+            box-shadow: 0 15px 32px rgba(72, 55, 42, .09);
+            animation: pop .45s ease;
+        }
+
+        .music-name { color: #5c4a3c; font-size: 15px; font-weight: 700; }
+        .music-sub { margin: 6px 0 14px; color: #897562; font-size: 11px; }
+
+        .music-bar {
+            width: 100%;
+            height: 6px;
+            margin-bottom: 14px;
+            overflow: hidden;
+            border-radius: 999px;
+            background: #e5d9cc;
+        }
+
+        .music-fill {
+            width: 8%;
+            height: 100%;
+            border-radius: inherit;
+            background: #78614d;
+            animation: song 4s linear infinite;
+        }
+
+        @keyframes song { to { width: 96%; } }
+
+        .cake {
+            position: relative;
+            width: 220px;
+            height: 175px;
+            margin: 8px auto;
+        }
+
+        .cake-body {
+            position: absolute;
+            left: 20px; top: 77px;
+            width: 180px; height: 73px;
+            border-radius: 0 0 20px 20px;
+            background: #c4936e;
+        }
+
+        .cake-top {
+            position: absolute;
+            left: 20px; top: 53px;
+            width: 180px; height: 50px;
+            border-radius: 50%;
+            background: #d7af88;
+            z-index: 2;
+        }
+
+        .cake-cream {
+            position: absolute;
+            left: 20px; top: 81px;
+            width: 180px; height: 18px;
+            border-radius: 50%;
+            background: #fffaf3;
+            z-index: 3;
+        }
+
+        .candle {
+            position: absolute;
+            top: 18px;
+            width: 10px; height: 52px;
+            border-radius: 7px;
+            background: #8a6f58;
+            z-index: 5;
+        }
+
+        .c1 { left: 76px; }
+        .c2 { left: 105px; }
+        .c3 { left: 134px; }
+
+        .flame {
+            position: absolute;
+            top: -22px; left: -4px;
+            font-size: 18px;
+            animation: flame .6s alternate infinite;
+        }
+
+        @keyframes flame {
+            to { transform: translateY(-3px) scale(1.12); }
+        }
+
+        .cake.blown .flame { display: none; }
+
+        .cake-message {
+            margin-bottom: 15px;
+            color: #806d5b;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .form-title {
+            margin-bottom: 4px;
+            font-family: "Playfair Display", serif;
+            color: #5c4a3c;
+            font-size: 23px;
+        }
+
+        .form-sub { margin-bottom: 18px; color: #897562; font-size: 12px; }
+
+        .field { margin-bottom: 13px; text-align: left; }
+
+        .field label {
+            display: block;
+            margin-bottom: 6px;
+            color: #614f40;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .field input, .field textarea {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #d9c7b4;
+            border-radius: 13px;
+            outline: none;
+            background: #fffdf9;
+            color: #57483b;
+            font-size: 12px;
+        }
+
+        .field textarea { min-height: 75px; resize: vertical; }
+
+        .saved {
+            display: none;
+            margin-top: 13px;
+            padding: 13px;
+            border-radius: 14px;
+            background: #f4e9dc;
+            color: #6d5b4c;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .note {
+            width: min(330px, 92vw);
+            margin: 28px auto;
+            padding: 31px 25px;
+            background: #fff8ed;
+            border-radius: 6px;
+            box-shadow: 7px 10px 30px rgba(72, 55, 42, .12);
+            transform: rotate(1deg);
+        }
+
+        .note-text {
+            color: #5e4d40;
+            font-family: "Playfair Display", serif;
+            font-size: 18px;
+            line-height: 1.75;
+        }
+
+        .end-icon {
+            font-size: 68px;
+            animation: bounce 1.8s infinite;
+        }
+
+        @keyframes bounce {
+            50% { transform: translateY(-9px); }
+        }
+
+        .confetti {
+            position: fixed;
+            top: -30px;
+            z-index: 99999;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(400deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .menu { grid-template-columns: 1fr; max-width: 300px; }
+            .menu-card { min-height: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="Soft.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
+    <div class="content">
+        <div class="eyebrow">one little thing</div>
+        <h1 class="title">hey, happy birthday arman.</h1>
+        <p class="subtitle">
+            aku bikin sesuatu hehehe<br>
+            di buka yaaa
+        </p>
+
+        <div class="envelope-wrap" id="envelope" onclick="openEnvelope()">
+            <div class="letter">
+                <h3>Happy Birthday.</h3>
+                <p>
+                    Semoga hari ini menyenangkan buat kamu.<br><br>
+                    That's all... for now.
+                </p>
+            </div>
+            <div class="envelope">
+                <div class="env-flap"></div>
+                <div class="env-front"></div>
+                <div class="env-heart">🤎</div>
+            </div>
+        </div>
+        <div class="hint">tap the envelope</div>
+    </div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+    <div class="content">
+        <div class="eyebrow">tiny challenge</div>
+        <h1 class="title">19 little loves.</h1>
+        <p class="subtitle">
+            tapi sebelum itu...<br>
+            <strong></strong> 👀
+        </p>
+
+        <!-- KALENDER PASSWORD -->
+        <div class="calendar-box" id="calendarBox">
+            <div class="cal-header">pilih tanggalnya</div>
+            <div class="cal-sub">kalo bener, baru bisa lanjyut</div>
+            <div class="cal-month">AGUSTUS 2007</div>
+
+            <div class="cal-grid" id="calGrid"></div>
+
+            <div class="salah-love" id="salahLove">
+                salah love <br>
+                <span style="font-size:12px;font-weight:500;">coba lagi yaa</span>
+            </div>
+
+            <div class="benar-love" id="benarLove">
+                yess betull! 🎉<br>
+                <span style="font-size:12px;font-weight:500;">12 Agustus 2007</span>
+            </div>
+        </div>
+
+        <!-- LOVE GAME -->
+        <div class="love-game" id="loveGame">
+            <div class="love-progress">
+                <div class="love-count" id="loveCount">0 / 19</div>
+                <div class="love-progress-track">
+                    <div class="love-progress-fill" id="loveProgress"></div>
+                </div>
+            </div>
+
+            <div class="love-instruction" id="loveInstruction">
+                klik satu-satu ya lovee nyaa 🤎
+            </div>
+            <div class="love-subtitle" id="loveSubtitle">
+                ada 19 love
+            </div>
+
+            <div class="love-field" id="loveField"></div>
+
+            <div class="love-finish" id="loveFinish">
+                <div class="love-finish-icon">💗🎂</div>
+                <h2 class="love-finish-title">19 / 19</h2>
+                <p class="love-finish-text">
+                    yeayyy.<br><br>
+                    DORR sekarang umur kamu <strong>19 tahun</strong>. 🎉<br>
+                    happy birthday, LOVEEE
+                </p>
+                <button class="btn" onclick="goToPage(3)">Lanjyutt →</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="page3">
+    <div class="content">
+        <div class="eyebrow">now your turn</div>
+        <h1 class="title">choose one.</h1>
+        <p class="subtitle">yang mana dulu?</p>
+
+        <div class="menu">
+            <div class="menu-card" onclick="openMenu('music')">
+                <div class="menu-icon">🎵</div>
+                <div class="menu-title">Music</div>
+                <div class="menu-sub">play this one</div>
+            </div>
+            <div class="menu-card" onclick="openMenu('cake')">
+                <div class="menu-icon">🎂</div>
+                <div class="menu-title">Cake</div>
+                <div class="menu-sub">make a wish</div>
+            </div>
+            <div class="menu-card" onclick="openMenu('likes')">
+                <div class="menu-icon">⭐</div>
+                <div class="menu-title">Things You Like</div>
+                <div class="menu-sub">isi semuanya</div>
+            </div>
+        </div>
+
+        <div class="music-box" id="musicBox">
+<audio id="cakeMusic" preload="auto">
+    <source src="Tiup Lilin.mp3" type="audio/mpeg">
+</audio>            <div class="music-name">Tiup lilin</div>
+            <div class="music-sub">huft · playing </div>
+            <div class="music-bar"><div class="music-fill"></div></div>
+            <button class="btn" id="musicBtn" onclick="toggleMusic()">pause ♪</button>
+        </div>
+
+        <div class="cake-box" id="cakeBox">
+            <h3>birthday cake.</h3>
+            <div class="cake" id="cake">
+                <div class="candle c1"><span class="flame">🔥</span></div>
+                <div class="candle c2"><span class="flame">🔥</span></div>
+                <div class="candle c3"><span class="flame">🔥</span></div>
+                <div class="cake-top"></div>
+                <div class="cake-cream"></div>
+                <div class="cake-body"></div>
+            </div>
+            <p class="cake-message" id="cakeMessage">
+                make a wish dulu ✨<br>tiup lilinnya.
+            </p>
+            <button class="btn" id="blowButton" onclick="blowCandles()">💨 tiup lilin</button>
+        </div>
+
+        <div class="like-form" id="likeForm">
+            <div class="form-title">okay, .</div>
+            <div class="form-sub">diisi yaa. akuu penasaran 👀</div>
+
+            <div class="field">
+                <label for="musicAnswer">🎵 Music</label>
+                <input id="musicAnswer" type="text" placeholder="lagu / penyanyi favorit">
+            </div>
+            <div class="field">
+                <label for="foodAnswer">🍜 Food</label>
+                <input id="foodAnswer" type="text" placeholder="makanan favorit">
+            </div>
+            <div class="field">
+                <label for="movieAnswer">🎬 Movie / Series</label>
+                <input id="movieAnswer" type="text" placeholder="film / series favorit">
+            </div>
+            <div class="field">
+                <label for="hobbyAnswer">🎮 Hobby</label>
+                <input id="hobbyAnswer" type="text" placeholder="hobi kamu">
+            </div>
+            <div class="field">
+                <label for="colorAnswer">🎨 Favorite Color</label>
+                <input id="colorAnswer" type="text" placeholder="warna favorit">
+            </div>
+            <div class="field">
+                <label for="randomAnswer">🤎 Random Thing</label>
+                <textarea id="randomAnswer" placeholder="apaa aja"></textarea>
+            </div>
+
+            <button class="btn" style="width:100%;" onclick="saveLikes()">simpan jawaban ✨</button>
+            <div class="saved" id="saved">jawaban aku simpan di pikiran<br>makasi udah mau isi.</div>
+        </div>
+
+        <br>
+        <button class="btn" onclick="goToPage(4)">one last thing →</button>
+    </div>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page" id="page4">
+    <div class="content">
+        <div class="eyebrow">before you go</div>
+        <h1 class="title">one little note.</h1>
+        <div class="note">
+            <div class="note-text">
+                Semoga diulang tahun sekarang kamu jadi lebih baik.<br><br>
+                banyak hal baik datang satu per satu dan semoga apa yang kamu semogakan tercapaiii.<br><br>
+                Semoga hari ini juga jadi hari yang paing berkesan dihidup kamu.<br><br>
+                Selalu semangattt Lovee buat jalani hari harii berikutnyaa
+                Happy Birthday.
+            </div>
+        </div>
+        <button class="btn" onclick="goToPage(5); createConfetti();">finish →</button>
+    </div>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page" id="page5">
+    <div class="content">
+        <div class="end-icon">🎂</div>
+        <div class="eyebrow">that's it</div>
+        <h1 class="title">happy birthday.</h1>
+        <p class="subtitle">
+            semogaa kamuu sukaaa byeeee.<br>
+            see youuuuuu :)
+        </p>
+        <button class="btn" onclick="location.reload()">replay ↻</button>
+    </div>
+</section>
+
+<script>
+    let envelopeOpened = false;
+    let unlocked = false;
+    const bgMusic = document.getElementById("bgMusic");
+
+    function startMusic() {
+        bgMusic.volume = 0.45;
+        bgMusic.play().catch(() => {});
+    }
+
+    window.addEventListener("load", function () {
+        bgMusic.volume = 0.45;
+        loadLikes();
+        startMusic();
+        setTimeout(startMusic, 800);
+        setTimeout(startMusic, 2000);
+        createCalendar();
+    });
+
+    document.body.addEventListener("click", startMusic);
+    document.body.addEventListener("touchstart", startMusic);
+
+    function goToPage(number) {
+        document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+        document.getElementById("page" + number).classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        startMusic();
+    }
+
+    function openEnvelope() {
+        startMusic();
+        if (envelopeOpened) return;
+        envelopeOpened = true;
+        document.getElementById("envelope").classList.add("open");
+        createConfetti();
+        setTimeout(() => goToPage(2), 1500);
+    }
+
+    /* KALENDER PASSWORD */
+    function createCalendar() {
+        const grid = document.getElementById("calGrid");
+        grid.innerHTML = "";
+
+        const dayNames = ["M", "S", "S", "R", "K", "J", "S"];
+        dayNames.forEach(d => {
+            const el = document.createElement("div");
+            el.className = "cal-day-name";
+            el.innerText = d;
+            grid.appendChild(el);
+        });
+
+        // Agustus 2007 mulai hari Rabu → kosong 3 kotak
+        for (let i = 0; i < 3; i++) {
+            const empty = document.createElement("div");
+            empty.className = "cal-day empty";
+            grid.appendChild(empty);
+        }
+
+        for (let day = 1; day <= 31; day++) {
+            const btn = document.createElement("button");
+            btn.className = "cal-day";
+            btn.type = "button";
+            btn.innerText = day;
+            btn.onclick = () => selectDate(day, btn);
+            grid.appendChild(btn);
+        }
+    }
+
+    function selectDate(day, btn) {
+        startMusic();
+
+        document.querySelectorAll(".cal-day").forEach(b => {
+            b.classList.remove("selected", "correct");
+        });
+
+        btn.classList.add("selected");
+
+        const salah = document.getElementById("salahLove");
+        const benar = document.getElementById("benarLove");
+
+        if (day === 12) {
+            btn.classList.add("correct");
+            salah.style.display = "none";
+            benar.style.display = "block";
+            unlocked = true;
+
+            createConfetti();
+
+            setTimeout(() => {
+                document.getElementById("loveGame").style.display = "block";
+                document.getElementById("calendarBox").style.opacity = "0.55";
+            }, 800);
+        } else {
+            benar.style.display = "none";
+            salah.style.display = "block";
+            unlocked = false;
+            document.getElementById("loveGame").style.display = "none";
+        }
+    }
+
+    /* 19 LOVE — TANPA TULISAN DOA */
+    let loveCount = 0;
+
+    const lovePositions = [
+        [10, 12], [43, 7], [76, 16], [23, 28], [59, 24],
+        [86, 33], [7, 47], [39, 42], [68, 48], [21, 58],
+        [50, 62], [81, 59], [8, 75], [34, 78], [65, 76],
+        [89, 80], [18, 90], [50, 88], [76, 91]
+    ];
+
+    function createLoveButtons() {
+        const field = document.getElementById("loveField");
+        field.innerHTML = "";
+
+        for (let i = 0; i < 19; i++) {
+            const button = document.createElement("button");
+            button.className = "love-btn";
+            button.type = "button";
+            button.innerText = "♡";
+            button.style.left = lovePositions[i][0] + "%";
+            button.style.top = lovePositions[i][1] + "%";
+            button.style.transform = "translate(-50%, -50%)";
+            button.onclick = () => clickLove(button);
+            field.appendChild(button);
+        }
+    }
+
+    function clickLove(button) {
+        if (!unlocked) return;
+        if (button.classList.contains("done")) return;
+
+        startMusic();
+        loveCount++;
+        button.innerText = "♥";
+        button.classList.add("done");
+
+        createLoveBurst(button);
+        updateLoveProgress();
+
+        // Hanya update progress, tanpa ganti tulisan doa
+        if (loveCount < 19) {
+            document.getElementById("loveSubtitle").innerText = "tinggal " + (19 - loveCount) + " lagi";
+        } else {
+            finishLoveGame();
+        }
+    }
+
+    function updateLoveProgress() {
+        document.getElementById("loveProgress").style.width = (loveCount / 19) * 100 + "%";
+        document.getElementById("loveCount").innerText = loveCount + " / 19";
+    }
+
+    function finishLoveGame() {
+        document.getElementById("loveInstruction").innerText = "selesai 🎉";
+        document.getElementById("loveSubtitle").innerText = "";
+        document.getElementById("loveField").style.display = "none";
+        document.getElementById("loveFinish").style.display = "block";
+        createConfetti();
+    }
+
+    function createLoveBurst(button) {
+        const rect = button.getBoundingClientRect();
+        const symbols = ["♥", "♡", "✦", "✨", "🤎"];
+
+        for (let i = 0; i < 8; i++) {
+            const item = document.createElement("div");
+            item.className = "love-burst";
+            item.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            item.style.left = rect.left + rect.width / 2 + "px";
+            item.style.top = rect.top + rect.height / 2 + "px";
+            item.style.fontSize = 14 + Math.random() * 16 + "px";
+            item.style.setProperty("--x", (-70 + Math.random() * 140) + "px");
+            item.style.setProperty("--y", (-70 + Math.random() * 140) + "px");
+            document.body.appendChild(item);
+            setTimeout(() => item.remove(), 950);
+        }
+    }
+
+    createLoveButtons();
+
+    /* MENU */
+    function hideMenuContent() {
+        document.getElementById("musicBox").style.display = "none";
+        document.getElementById("cakeBox").style.display = "none";
+        document.getElementById("likeForm").style.display = "none";
+    }
+
+    function openMenu(type) {
+        startMusic();
+        hideMenuContent();
+        if (type === "music") document.getElementById("musicBox").style.display = "block";
+        if (type === "cake") document.getElementById("cakeBox").style.display = "block";
+        if (type === "likes") document.getElementById("likeForm").style.display = "block";
+    }
+
+    function toggleMusic() {
+        const button = document.getElementById("musicBtn");
+        if (bgMusic.paused) {
+            startMusic();
+            button.innerText = "pause ♪";
+        } else {
+            bgMusic.pause();
+            button.innerText = "play ♪";
+        }
+    }
+
+    function blowCandles() {
+        document.getElementById("cake").classList.add("blown");
+        document.getElementById("cakeMessage").innerHTML = "✨ lilinnya mati.<br>semoga wish-nya terkabul satu-satu 🤎";
+        document.getElementById("blowButton").innerText = "🎉 yay!";
+        document.getElementById("blowButton").disabled = true;
+        createConfetti();
+        startMusic();
+    }
+
+    function saveLikes() {
+        const answers = {
+            music: document.getElementById("musicAnswer").value.trim(),
+            food: document.getElementById("foodAnswer").value.trim(),
+            movie: document.getElementById("movieAnswer").value.trim(),
+            hobby: document.getElementById("hobbyAnswer").value.trim(),
+            color: document.getElementById("colorAnswer").value.trim(),
+            random: document.getElementById("randomAnswer").value.trim()
+        };
+        localStorage.setItem("birthdayLikes", JSON.stringify(answers));
+        document.getElementById("saved").style.display = "block";
+        createConfetti();
+        startMusic();
+    }
+
+    function loadLikes() {
+        const saved = localStorage.getItem("birthdayLikes");
+        if (!saved) return;
+        const data = JSON.parse(saved);
+        document.getElementById("musicAnswer").value = data.music || "";
+        document.getElementById("foodAnswer").value = data.food || "";
+        document.getElementById("movieAnswer").value = data.movie || "";
+        document.getElementById("hobbyAnswer").value = data.hobby || "";
+        document.getElementById("colorAnswer").value = data.color || "";
+        document.getElementById("randomAnswer").value = data.random || "";
+    }
+
+    function createConfetti() {
+        const symbols = ["✦", "✧", "•", "✨", "🤎", "♥"];
+        for (let i = 0; i < 30; i++) {
+            const item = document.createElement("div");
+            item.className = "confetti";
+            item.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            item.style.left = Math.random() * 100 + "vw";
+            item.style.fontSize = 13 + Math.random() * 15 + "px";
+            item.style.animationDuration = 2 + Math.random() * 2 + "s";
+            item.style.animationDelay = Math.random() * 0.35 + "s";
+            document.body.appendChild(item);
+            setTimeout(() => item.remove(), 4500);
+        }
+    }
+</script>
+</body>
+</html>
